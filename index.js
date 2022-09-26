@@ -9,7 +9,7 @@ let moviesId=[]
 const movieNotFound = 'Unable to find what you’re looking for. Please try another search.'
 let isAdded= false
 let addmovie
-let MoviesInStorage = JSON.parse(localStorage.getItem('movies'))
+let MoviesInStorage = JSON.parse(localStorage.getItem('movies')) || []
 console.log(MoviesInStorage)
 
 
