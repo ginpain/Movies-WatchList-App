@@ -14,6 +14,7 @@ html, body {
     padding-bottom: 2em;
     border-bottom: 1.5px solid rgba(0, 0, 0, .2);
     /* border: 1px  solid green; */
+    /* transition: 2000ms; */
 }
 
 .movie-detail {
@@ -147,7 +148,7 @@ main {
 
 
 .h2 {
-    color: #DFDDDD;
+    color: #aaa8a8;
     max-width: 400px;
 }
 
@@ -157,7 +158,7 @@ main {
 }
 
 
-.div-btn-watchList {
+.div-btn-watchList, .remove-all {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -165,19 +166,19 @@ main {
     gap: 8px;
     
 }
-.div-btn-watchList:hover {
+.div-btn-watchList:hover , .remove-all:hover, .div-btn-watchList-1:hover {
     background-color: lightsalmon;
     border-radius: 10px;
     padding: .5em 1em;
     
 }
 
-.div-btn-watchList > p {
+.div-btn-watchList > p , .remove-all >p{
     margin: 0;
     font-weight: bold;
 }
 
-.div-btn-watchList > img {
+.div-btn-watchList > img , .remove-all >img{
     width: 24px;
     margin: 0;
 }
@@ -190,13 +191,31 @@ main {
 }
 
 .div-btn-watchList-1 {
-    display: flex;
-    align-items: center;
+    transition: 500ms;
 }
 
 .div-btn-watchList-1 a {
     color: black;
+    display: flex;
+    gap: 5px;
 
+}
+
+
+.suggested-movies {
+    text-align: center;
+    font-size: 1rem;
+    text-transform: capitalize;
+}
+
+.remove-all {
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+    background-color: rgb(230, 83, 83);
+    padding: .5em .5em;
+    border-radius: 10px;
+    color: white;
 }
 
 header a:hover {
@@ -232,4 +251,11 @@ header a:hover {
     /* .runtime {
         display: none;
     } */
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        gap: 10px;
+    }
 }

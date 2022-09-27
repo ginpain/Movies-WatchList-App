@@ -2,6 +2,7 @@ const moviesDiv = document.getElementById('movies')
 const search = document.getElementById('search')
 const form = document.getElementById('form')
 const backText = document.getElementById('home-page-main')
+const suggestedMoviesHTML = document.getElementById('suggested-movies')
 const addIconLight= './images/add-icon.svg'
 const addedIcon = './images/check-solid.svg'
 let movieHTML=``
@@ -10,8 +11,12 @@ const movieNotFound = 'Unable to find what you’re looking for. Please try anot
 let isAdded= false
 let addmovie
 let MoviesInStorage = JSON.parse(localStorage.getItem('movies')) || []
-console.log(MoviesInStorage)
 
+// rendring some movies on home page by default
+const suggestedMovies = ['life', 'joker', 'hope', 'lego','fine', 'dark']
+let random = Math.floor(Math.random()*suggestedMovies.length)
+let chosenMovie = suggestedMovies[random]
+getMoviesId(chosenMovie)
 
 
 
@@ -36,8 +41,7 @@ async function getMoviesId(search) {
     }else {
         moviesId= data.Search.map(movie => movie.imdbID)
         moviesId.forEach(getMovieInfo)
-
-
+        suggestedMoviesHTML.innerHTML=`<h3>recommended results for "${search}" movies</h3>`
 
     }
     
@@ -59,6 +63,7 @@ async function getMovieInfo(id) {
 
 // function used to render the data of the movies after the user click search
 function render(movie) {
+    // cheking if this movie exist in localStorage so we use done icon instead of add icon
     let isMovieInStorage = MoviesInStorage.some(e => e.id ===movie.imdbID)
     movieHTML += `
     
@@ -94,11 +99,12 @@ function saveMovie(movie) {
     let oldMovies = JSON.parse(localStorage.getItem('movies')) || [];
     let duplicated = oldMovies.some(e => e.id ===movie.id)
     if(duplicated) {
+        // handling duplicated movies in localStorage
         alert('This movie already exists in your watchList')
     }else{
         oldMovies.push({'id':movie.id, 'html': movie.outerHTML})
         localStorage.setItem('movies', JSON.stringify(oldMovies))
-        isAdded=true
+        // changing the add icon to done mark after adding a movie
         addmovie = movie.getElementsByClassName('div-btn-watchList')
         addmovie.item(0).innerHTML=`<img src="${addedIcon}" /> <p>Watchlist</p>`
         
