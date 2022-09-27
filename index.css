@@ -13,9 +13,9 @@ html, body {
     margin: 2em;
     padding-bottom: 2em;
     border-bottom: 1.5px solid rgba(0, 0, 0, .2);
-    /* border: 1px  solid green; */
-    /* transition: 2000ms; */
+    animation: fadeIn .5s;
 }
+
 
 .movie-detail {
     display: flex;
@@ -119,6 +119,7 @@ main {
     width: 70%;
     margin: 3em auto;
     /* border: 1px solid red; */
+    
 }
 
 .movie-poster {
@@ -259,3 +260,8 @@ header a:hover {
         gap: 10px;
     }
 }
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
